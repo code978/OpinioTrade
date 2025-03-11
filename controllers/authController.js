@@ -5,7 +5,8 @@ const User = require('./../models/User.model');
 exports.registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email }).exec(); // Now this should work
+
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
@@ -18,7 +19,7 @@ exports.registerUser = async (req, res) => {
     });
 
     const token = jwt.sign(
-      { userId: user._id, role: user.role },
+      { userId: user._id},
       process.env.JWT_SECRET,
       { expiresIn: '1h' }
     );

@@ -5,9 +5,10 @@ const {
   loginUser,
   getProfile
 } = require('../controllers/authController');
+const { VailidateToken } = require('../utils/validateToken');
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.get('/me', getProfile);
+router.get('/me', VailidateToken, getProfile);
 
 module.exports = router;

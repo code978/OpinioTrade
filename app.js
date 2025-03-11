@@ -20,10 +20,10 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(logger.requestLogger); // Custom Winston logging middleware/
 
 // API Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/events', require('./routes/eventRoutes'));
-app.use('/api/trades', require('./routes/tradeRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
+app.use('/api/v1/auth', require('./routes/authRoutes'));
+app.use('/api/v1/events', require('./routes/eventRoutes'));
+app.use('/api/v1/trades', require('./routes/tradeRoutes'));
+app.use('/api/v1/admin', require('./routes/adminRoutes'));
 
 app.get('/', (req, res) => {
   res.status(200).json({ 
